@@ -75,6 +75,7 @@ public class FileImageUploadServlet extends HttpServlet {
 				for (FileItem fileItem : items) {
 					String filename=fileItem.getName();
 					String filepath=filedir+File.separator+filename;
+
 					System.out.println("文件保存路径为:"+filepath);
 					File file=new File(filepath);
 					InputStream inputSteam=fileItem.getInputStream();
