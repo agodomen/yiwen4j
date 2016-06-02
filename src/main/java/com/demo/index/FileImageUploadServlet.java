@@ -39,7 +39,7 @@ public class FileImageUploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ServletFileUpload upload;
 	private final long MAXSize = 4194304*2L;//4*2MB
-	private String filedir="E:\\System\\Pictures\\Ashampoo Snap 7";
+	private String filedir="C:\\";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -57,8 +57,8 @@ public class FileImageUploadServlet extends HttpServlet {
 		FileItemFactory factory = new DiskFileItemFactory();// Create a factory for disk-based file items
 		this.upload = new ServletFileUpload(factory);// Create a new file upload handler
 		this.upload.setSizeMax(this.MAXSize);// Set overall request size constraint 4194304
-		//filedir=config.getServletContext().getRealPath("images");
-		filedir="E:/System/Pictures/Ashampoo Snap 7";
+		filedir=config.getServletContext().getRealPath("images");
+		//filedir="E:/System/Pictures/Ashampoo Snap 7";
 		System.out.println("filedir="+filedir);
 	}
 
