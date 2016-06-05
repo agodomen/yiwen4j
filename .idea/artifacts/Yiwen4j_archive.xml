@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="Yiwen4j archive">
+    <output-path>$PROJECT_DIR$/out/artifacts/Yiwen4j_archive</output-path>
+    <root id="archive" name="Yiwen4j archive.war">
+      <element id="artifact" artifact-name="Yiwen4j" />
+    </root>
+  </artifact>
+</component>

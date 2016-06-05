@@ -29,8 +29,6 @@ public class IndexController extends Controller {
         FileItemFactory factory = new DiskFileItemFactory();// Create a factory for disk-based file items
         this.upload = new ServletFileUpload(factory);// Create a new file upload handler
         this.upload.setSizeMax(this.MAXSize);// Set overall request size constraint 4194304
-        filedir="E:/System/Pictures/Ashampoo Snap 7";
-        logger.info("Init the defualt upload images path: "+filedir);
         logger.info("IndexContrller has finished building.");
     }
 
@@ -46,11 +44,12 @@ public class IndexController extends Controller {
     public void upLoad(){
         ServletContext servletContext=getRequest().getServletContext();
         filedir=getRequest().getServletContext().getRealPath("images");
+        logger.info("Init the defualt upload images path: "+filedir);
         String result=null;
         try {
             List<FileItem> items = this.upload.parseRequest(getRequest());
+            logger.info("starting saving a file from a client.....");
             if(items!=null	&& !items.isEmpty()){
-
                 for (FileItem fileItem : items) {
                     String filename=fileItem.getName();
                     String filepath=filedir+ File.separator+filename;
@@ -73,11 +72,13 @@ public class IndexController extends Controller {
                         fos.close();
                         fis.close();
                         inputSteam.close();
+                        logger.info("A image has save success.The Yiwen scanner has started....");
                         String l=getRequest().getParameter("altitude");
                         String a=getRequest().getParameter("latitude");
                         result= YiWenServices.yiwenScan(file,a,l);
-                        result="我觉得就";
                         renderText(result);
+                        logger.info("Yiwen Scanner has finished job. The result is :"+result);
+
                         return;
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -89,6 +90,7 @@ public class IndexController extends Controller {
 
         }
         renderText("请稍后再试");
+        logger.error("please contact the writer. something wrong is about the service.");
     }
 
     @ActionKey("go")
